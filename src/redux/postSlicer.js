@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const postData = createAsyncThunk("postNewBook", async (newBook) => {
     try {
-        const response = await axios.post('http://localhost:3000/books', newBook);
+        const response = await axios.post('http://localhost:3001/books', newBook);
         return response.data;
     } catch (error) {
         console.log(error);

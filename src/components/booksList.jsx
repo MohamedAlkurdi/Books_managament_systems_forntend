@@ -5,6 +5,13 @@ import Book from "./book";
 export default function BooksList(){
     const booksData = useSelector(state=>state.library_get);
     const [newableList,setNewableList] = useState(booksData);
+    const [loading,setLoading] = useState(booksData.isLoading);
+    const [error,setError] = useState(booksData.error);
+
+    useEffect(()=>{
+        setLoading(booksData.isLoading);
+        setError(booksData.error)
+    },[booksData])
     
     const renderBooks = newableList.books.map(el=>{
         return <Book props={el}/>
@@ -15,8 +22,13 @@ export default function BooksList(){
         setNewableList(booksData)
     },[booksData])
     return(
+        <div className="bookList w-full">
+        {
+        error ? <div className="errorMessage text-6xl h-4">errorrrrrrrrrrrrrrrrrrr</div> :
+        loading ? <div className="errorMessage text-6xl h-4">looooaaaadddddiiiiinnnnnggggg</div> :
         <ul className={`p-5 custom-grid-template w-full grid grid-cols-auto-fill grid-cols-1fr gap-5`}>
             {renderBooks}
-        </ul>
+        </ul>}
+        </div>
     )
 }

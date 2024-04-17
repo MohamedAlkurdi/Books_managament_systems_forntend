@@ -4,10 +4,12 @@ import axios from "axios";
 export const fetchData = createAsyncThunk("fetchBooksData", async () => {
     console.log("hello darkness my old friend")
     try {
-        const response = await axios.get('http://localhost:3000/books');
+        const response = await axios.get('http://localhost:3001/books');
         return response.data;
     } catch (error) {
+        console.log("you phone is linging");
         console.log(error.message);
+        throw error;
     }
 });
 
@@ -35,7 +37,7 @@ const getSlicer = createSlice({
         builder.addCase(fetchData.rejected, (state, action) => {
             state.isLoading = false;
             state.error = true;
-            console.log(action.error);
+            console.log("actions error:",action.error);
         })
     }
 })
