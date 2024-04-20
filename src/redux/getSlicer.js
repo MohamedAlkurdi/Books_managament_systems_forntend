@@ -23,8 +23,6 @@ const getSlicer = createSlice({
     name: "GET_SLICER",
     initialState: initialState,
     reducers: {
-        deleteBook: (state, action) => { },
-        updateBook: (state, action) => { },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchData.pending, (state, action) => {
@@ -42,5 +40,5 @@ const getSlicer = createSlice({
     }
 })
 
-export const { addBook, deleteBook, updateBook } = getSlicer.actions;
+export const { addBook } = getSlicer.actions;
 export default getSlicer.reducer;

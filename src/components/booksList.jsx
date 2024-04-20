@@ -13,8 +13,8 @@ export default function BooksList(){
         setError(booksData.error)
     },[booksData])
     
-    const renderBooks = newableList.books.map(el=>{
-        return <Book props={el}/>
+    const renderBooks = newableList.books.map((el)=>{
+        return <Book key={el._id} props={el}/>
         // return <li className="p-10 flex flex-col"><h1>{el.book_title}</h1><p>{el.writer}</p><p>{el.publisher}</p></li>
     })
     useEffect(()=>{

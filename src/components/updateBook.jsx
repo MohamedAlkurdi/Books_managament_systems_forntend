@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
-import { putData } from "../redux/putSlicer";
+import { updateBook } from "../redux/putSlicer";
 
 export default function UpdateBook() {
     const [UpdatedBook, setUpdatedBook] = useState({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
@@ -8,7 +8,7 @@ export default function UpdateBook() {
 
     function handleUpdateClick(e) {
         e.preventDefault();
-        dispatch(putData({UpdatedBook }));
+        dispatch(updateBook({UpdatedBook }));
         setUpdatedBook({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
     }
     return (

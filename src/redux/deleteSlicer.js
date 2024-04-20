@@ -1,10 +1,11 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "./getSlicer";
 import axios from "axios";
 
-export const updateBook = createAsyncThunk("updateSingleBook", async (bookID)=>{
+export const deleteBook = createAsyncThunk("deleteSingleBook", async (bookID)=>{
     try{
-    const response = await axios.put(`http://localhost:3001/books/${bookID}`);
+    const response = await axios.delete(`http://localhost:3001/books/${bookID}`);
     return response.data;
     }catch(error){
         console.log(error.message);
@@ -16,20 +17,21 @@ const initialState = {
     error: false,
 }
 
-const updateSlicer = createSlice({
-    name:"PUT_SLICER",
+const deleteSlicer = createSlice({
+    name:"DELETE_SLICER",
     initialState:initialState,
     reducers:{
     },
     extraReducers: (builder) => {
-        builder.addCase(updateBook.pending, (state, action) => {
+        builder.addCase(deleteBook.pending, (state, action) => {
             state.isLoading = true;
         })
-        builder.addCase(updateBook.fulfilled, (state, action) => {
+        builder.addCase(deleteBook.fulfilled, (state, action) => {
             state.isLoading = false;
-            console.log("from the updateBook fulfilled case: ",action.payload)
+            // state.books = action.payload;
+            console.log("from the deleteBook fulfilled case: ",action.payload)
         })
-        builder.addCase(updateBook.rejected, (state, action) => {
+        builder.addCase(deleteBook.rejected, (state, action) => {
             state.isLoading = false;
             state.error = true;
             console.log("actions error:",action.error);
@@ -38,8 +40,7 @@ const updateSlicer = createSlice({
 })
 export const deleteBookAndFetchData = (bookID) => async (dispatch) => {
     try {
-        
-        await dispatch(updateBook(bookID));
+        await dispatch(deleteBook(bookID));
         await dispatch(fetchData());
     } catch (error) {
         console.error('Error deleting book:', error);
@@ -47,4 +48,4 @@ export const deleteBookAndFetchData = (bookID) => async (dispatch) => {
 };
 
 
-export default updateSlicer.reducer;
+export default deleteSlicer.reducer;
