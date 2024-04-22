@@ -1,14 +1,26 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { updateBook } from "../redux/putSlicer";
+import { updateBookAndFetchData } from "../redux/putSlicer";
+import { useLocation } from "react-router-dom";
 
 export default function UpdateBook() {
-    const [UpdatedBook, setUpdatedBook] = useState({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
+    const [UpdatedBook, setUpdatedBook] = useState({ _id: '', book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
     const dispatch = useDispatch();
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log("finally!")
+    }, [])
+    useEffect(() => {
+        console.log("updatedBookId: ", location.state.id);
+        setUpdatedBook({...updateBook,_id: location.state.id});
+    }, [location])
 
     function handleUpdateClick(e) {
         e.preventDefault();
-        dispatch(updateBook({UpdatedBook }));
+        console.log("the new version of the book that is goiinf to be updated: ", UpdatedBook)
+        dispatch(updateBookAndFetchData(UpdatedBook));
         setUpdatedBook({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
     }
     return (

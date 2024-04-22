@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchData = createAsyncThunk("fetchBooksData", async () => {
-    console.log("hello darkness my old friend")
     try {
         const response = await axios.get('http://localhost:3001/books');
         return response.data;
