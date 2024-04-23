@@ -58,11 +58,11 @@ export default function BooksList() {
                             {renderBooks}
                         </ul>}
             {showDeletionConfirm ?
-                <div className="confirmPopup bg-custom-dark p-8  w-96 flex flex-col fixed left-1/2 top-1/2 translate-x-1/2 translate-y-1/2">
-                    <p>are you sure?</p>
-                    <div className="confirmSlection w-full gap-2">
-                        <button onClick={handleDelete} className="text-custom-light">yes</button>
-                        <button onClick={rejectDelete} className="text-custom-light">no</button>
+                <div className="confirmPopup bg-custom-dark items-center p-8 w-96 flex flex-col fixed right-1/2 top-1/2 translate-x-1/2 translate-y-1/2 gap-6 rounded-xl z-20">
+                    <p className="uppercase text-xl font-bold text-custom-light">are you sure?</p>
+                    <div className="confirmSlection w-full gap-2 flex justify-around items-center">
+                        <button onClick={handleDelete} className="text-custom-light uppercase">yes</button>
+                        <button onClick={rejectDelete} className="text-custom-light uppercase">no</button>
                     </div>
                 </div> : ""
             }

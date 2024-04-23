@@ -29,7 +29,7 @@
   left: 20px;
   width: 30px;
   height: 20px;
-  background-color: #3F4E4F;
+  background-color: #273131;
   z-index: 0;
 }
 .book::before{
@@ -43,11 +43,16 @@
   border-right-width: 15px;
   border-top-width: 15px;
   border-bottom-width: 15px;
-  border-color: #3F4E4F;
-  background-color: #3F4E4F;
+  border-color: #273131;
+  background-color: #273131;
   border-bottom-color: #A27B5C;
   z-index: 0;
 }
+.bookInfo{
+    font-weight: bold;
+}
+
+
 @keyframes rotate {
   from {
       transform: rotate(0deg);
