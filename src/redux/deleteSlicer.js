@@ -15,12 +15,19 @@ export const deleteBook = createAsyncThunk("deleteSingleBook", async (bookID)=>{
 const initialState = {
     isLoading: false,
     error: false,
+    delete: false,
+    bookID:"",
 }
 
 const deleteSlicer = createSlice({
     name:"DELETE_SLICER",
     initialState:initialState,
     reducers:{
+        confirmDeletion: (state,action)=>{
+            const {confirm,id} = action.payload;
+            state.delete = confirm;
+            state.bookID = id;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(deleteBook.pending, (state, action) => {
@@ -47,5 +54,5 @@ export const deleteBookAndFetchData = (bookID) => async (dispatch) => {
     }
 };
 
-
+export const {confirmDeletion} = deleteSlicer.actions;
 export default deleteSlicer.reducer;

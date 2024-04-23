@@ -9,19 +9,17 @@ export default function UpdateBook() {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    useEffect(() => {
-        console.log("finally!")
-    }, [])
+
     useEffect(() => {
         console.log("updatedBookId: ", location.state.id);
-        setUpdatedBook({...updateBook,_id: location.state.id});
+        setUpdatedBook({ ...updateBook, _id: location.state.id });
     }, [location])
 
     function handleUpdateClick(e) {
         e.preventDefault();
-        console.log("the new version of the book that is goiinf to be updated: ", UpdatedBook)
-        dispatch(updateBookAndFetchData(UpdatedBook));
-        setUpdatedBook({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
+            console.log("the new version of the book that is goiinf to be updated: ", UpdatedBook)
+            dispatch(updateBookAndFetchData(UpdatedBook));
+            setUpdatedBook({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
     }
     return (
         <form className="flex flex-col w-full">

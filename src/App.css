@@ -7,3 +7,53 @@
 .custom-grid-template{
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
+
+.custom_height{
+  min-height: calc(100vh - 96px);
+}
+
+.text-shadow{
+  text-shadow:5px 5px 15px black;
+}
+
+.rotate_animation {
+  animation: rotate 2s linear infinite;
+}
+.book{
+  box-shadow: 3px 3px 15px black;
+}
+.book::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 30px;
+  height: 20px;
+  background-color: #3F4E4F;
+  z-index: 0;
+}
+.book::before{
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  width: 30px;
+  height: 0px;
+  border-left-width: 15px;
+  border-right-width: 15px;
+  border-top-width: 15px;
+  border-bottom-width: 15px;
+  border-color: #3F4E4F;
+  background-color: #3F4E4F;
+  border-bottom-color: #A27B5C;
+  z-index: 0;
+}
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+} 
+

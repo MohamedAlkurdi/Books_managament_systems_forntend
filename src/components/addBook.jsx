@@ -1,40 +1,40 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { addBook } from "../redux/getSlicer";
-import {postData} from '../redux/postSlicer'
+import { postData } from '../redux/postSlicer'
 
 export default function AddBook() {
     const [newBook, setNewBook] = useState({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
-    const [warning,setWarning] = useState(false);
+    const [warning, setWarning] = useState(false);
     const dispatch = useDispatch();
-    
-    function checkFormStatus(){
+
+    function checkFormStatus() {
         const inputsStatusArray = [];
-        for(let key in newBook){
+        for (let key in newBook) {
             const inputStatus = newBook[key] === "" || newBook[key] === 0;
             inputsStatusArray.push(inputStatus)
         }
-        const inputsStatusCheck = inputsStatusArray.every(el => el===true);
+        const inputsStatusCheck = inputsStatusArray.every(el => el === true);
         return inputsStatusCheck;
     }
     function handleAddClick(e) {
-        console.log("the inputs are",checkFormStatus() === false ? "filled." : "empty.");
+        console.log("the inputs are", checkFormStatus() === false ? "filled." : "empty.");
         setWarning(checkFormStatus());
         e.preventDefault();
-        if(!checkFormStatus()){
+        if (!checkFormStatus()) {
             dispatch(postData(newBook));
             setNewBook({ book_title: '', genre: '', writer: '', pages_number: 0, publisher: '', release_date: '', });
         }
     }
 
-    useEffect(()=>{
-        if(warning){
-            const timeOut = setTimeout(()=>{
+    useEffect(() => {
+        if (warning) {
+            const timeOut = setTimeout(() => {
                 setWarning(false);
-            },3000)
+            }, 3000)
         }
-    },[warning])
-    
+    }, [warning])
+
     return (
         <form className="flex flex-col w-full relative">
             <input
